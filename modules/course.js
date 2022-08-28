@@ -1,7 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs')
 const path = require('path')
-const {static} = require("express");
 
 class Course {
 	constructor(title, price, img) {
