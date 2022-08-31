@@ -1,1 +1,31 @@
 <h1>Card</h1>
+<div id="card">
+  {{#if courses.length}}
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Number</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      {{#each courses}}
+        <tr>
+          <td>{{title}}</td>
+          <td>{{count}}</td>
+          <td>
+            <button class="btn btn-small js-remove" data-id="{{id}}">
+              Delete
+            </button>
+          </td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+
+    <p><strong>Price: <span class="price">{{price}}</span></strong></p>
+  {{else}}
+    <p>Empty card</p>
+  {{/if}}
+</div>
