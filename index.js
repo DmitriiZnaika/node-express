@@ -1,6 +1,9 @@
 const express = require('express')
 const path = require('path')
-const exphbs = require('express-handlebars')
+const mongoose = require('mongoose')
+const exphbs = require('express-handlebars');
+const Handlebars = require('handlebars')
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const homeRoutes = require('./routes/home')
 const addRoutes = require('./routes/add')
 const coursesRoutes = require('./routes/courses')
@@ -19,14 +22,24 @@ app.set('views', 'views')
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({extended: true}))
+app.use(express.json());
 app.use('/', homeRoutes)
 app.use('/add', addRoutes)
 app.use('/courses', coursesRoutes)
 app.use('/card', cardRoutes)
 
+async function start() {
+	try {
+		const url = `mongodb+srv://DmitriiSaricev:m3SjDCjq96Ghli5W@cluster0.nyvxj9u.mongodb.net/course-shop`
+		await mongoose.connect(url, {useNewUrlParser: true})
 
-const PORT = process.env.PORT || 3001
+		const PORT = process.env.PORT || 3001
+		app.listen(PORT, () => {
+			console.log(`Server is running ${PORT}`)
+		})
+	} catch (e) {
+		console.log('Error', e)
+	}
+}
 
-app.listen(PORT, () => {
-	console.log(`Server is running ${PORT}`)
-})
+start()

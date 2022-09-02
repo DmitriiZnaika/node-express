@@ -1,10 +1,10 @@
-const {Router} =require('express')
+const {Router} = require('express')
 const Course = require('../modules/course')
 const router = Router()
 
 
 router.get('/', async (req, res) => {
-	const courses = await Course.getAll()
+	const courses = await Course.find().lean()
 	res.render('courses', {title: 'Courses', isCourses: true, courses})
 })
 
@@ -12,7 +12,7 @@ router.get('/:id/edit', async (req, res) => {
 	if (!req.query.allow) {
 		return res.redirect('/')
 	}
- const course = await Course.getById(req.params.id)
+	const course = await Course.findById(req.params.id)
 	res.render('course-edit', {
 		title: `Edit ${course.title}`,
 		course
@@ -20,7 +20,7 @@ router.get('/:id/edit', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-	const course = await Course.getById(req.params.id)
+	const course = await Course.findById(req.params.id)
 	console.log('edit', course, req.params.id)
 	res.render('course', {
 		layout: 'empty',
@@ -30,7 +30,9 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/edit', async (req, res) => {
- await Course.update(req.body)
+	const {id} = req.body
+	delete req.body.id
+	await Course.findByIdAndUpdate(id, req.body)
 	res.redirect('/courses')
 })
 
