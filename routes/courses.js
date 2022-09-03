@@ -4,7 +4,7 @@ const router = Router()
 
 
 router.get('/', async (req, res) => {
-	const courses = await Course.find().lean()
+	const courses = await Course.find().populate('userId').lean()
 	res.render('courses', {title: 'Courses', isCourses: true, courses})
 })
 
