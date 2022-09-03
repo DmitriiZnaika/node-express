@@ -11,12 +11,12 @@
             <img src={{img}}>
           </div>
           <div class="card-content">
-            <span class="card-title">{{title}}</span>
+            <span class="card-title">{{this.title}}</span>
             <p class="price">{{price}}</p>
           </div>
           <div class="card-action actions">
-            <a href="/courses/{{id}}" target="_blank">Open course</a>
-            <a href="/courses/{{id}}/edit?allow=true">Edit</a>
+            <a href="/courses/{{_id}}" target="_blank">Open course</a>
+            <a href="/courses/{{_id}}/edit?allow=true">Edit</a>
 
             <form action="/card/add" method="POST">
               <input type="hidden" name="id" value="{{id}}">
