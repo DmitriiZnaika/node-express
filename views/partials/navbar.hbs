@@ -4,27 +4,27 @@
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
       {{#if isHome}}
-      <li class="active"><a href="/">Main</a></li>
+        <li class="active"><a href="/">Main</a></li>
       {{else}}
-       <li class=><a href="/">Main</a></li>
+        <li class=><a href="/">Main</a></li>
       {{/if}}
 
       {{#if isCourses}}
         <li class="active"><a href="/courses">Courses</a></li>
-        {{else}}
+      {{else}}
         <li><a href="/courses">Courses</a></li>
       {{/if}}
 
       {{#if isAdd}}
         <li class="active"><a href="/add">Add Course</a></li>
-        {{else}}
-       <li><a href="/add">Add Course</a></li>
+      {{else}}
+        <li><a href="/add">Add Course</a></li>
       {{/if}}
 
-      {{#if isCard}}
-        <li class="active"><a href="/card">Card</a></li>
-        {{else}}
-       <li><a href="/card">Add Course to Card</a></li>
+      {{#if isCart}}
+        <li class="active"><a href="/cart">Cart</a></li>
+      {{else}}
+        <li><a href="/cart">Add Course to Cart</a></li>
       {{/if}}
 
     </ul>
