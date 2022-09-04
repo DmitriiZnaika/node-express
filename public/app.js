@@ -25,7 +25,7 @@ if ($cart) {
 												<td>${val.title}</td>
 												<td>${val.count}</td>
 												<td>
-														<button class="btn btn-small js-remove" data-id="${val.id}">
+														<button class="btn btn-small js-remove" data-id="${val._id}">
 																Delete
 														</button>
 												</td>
