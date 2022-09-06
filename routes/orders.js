@@ -6,20 +6,30 @@ const router = Router()
 router.get('/', async (req, res) => {
 	try {
 		const orders = await Order.find({
-			'user.userId': req.user._id
-		}).populate('user.userId')
+			'user.userId': req.user.id
+		}).populate('user.userId').lean()
+
 		res.render('orders', {
 			title: 'Orders',
 			isOrder: true,
 			orders: orders.map((val) => {
 				return {
-					...val._doc,
+					...val,
 					price: val.courses.reduce((total, course) => {
 						return total += course.course.price * course.count
 					}, 0)
 				}
 			})
 		})
+	} catch (e) {
+		console.log(e)
+	}
+})
+
+router.post('/:id', async (req, res) => {
+	try {
+		await Order.deleteOne({id: req.params.id})
+		await req.res.redirect('/orders')
 	} catch (e) {
 		console.log(e)
 	}

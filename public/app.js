@@ -9,6 +9,19 @@ document.querySelectorAll('.price').forEach(node => {
 	node.textContent = toCurrency(node.textContent)
 })
 
+const toDate = (date) => {
+	return new Intl.DateTimeFormat('en-US', {
+		weekday: 'long',
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric'
+	}).format(new Date(date))
+}
+
+document.querySelectorAll('.date').forEach(node => {
+	node.textContent = toDate(node.textContent)
+})
+
 const $cart = document.querySelector("#cart")
 if ($cart) {
 	$cart.addEventListener('click', event => {
