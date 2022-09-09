@@ -1,9 +1,10 @@
 const {Router} = require('express')
 const Order = require("../modules/order");
+const auth = require('../middleware/auth')
 const router = Router()
 
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
 	try {
 		const orders = await Order.find({
 			'user.userId': req.user.id
@@ -26,7 +27,8 @@ router.get('/', async (req, res) => {
 	}
 })
 
-router.post('/:id', async (req, res) => {
+/// delete order
+router.post('/:id', auth, async (req, res) => {
 	try {
 		await Order.deleteOne({id: req.params.id})
 		await req.res.redirect('/orders')
@@ -35,7 +37,7 @@ router.post('/:id', async (req, res) => {
 	}
 })
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
 	try {
 		const user = await req.user
 				.populate('cart.items.courseId')

@@ -35,3 +35,7 @@
 .buttons-wrapper {
 	display: grid;
 }
+
+.auth {
+	margin-top: 20px;
+}
