@@ -35,7 +35,7 @@ app.use(session({
 	secret: 'secret',
 	resave: false,
 	saveUninitialized: false,
-	store
+	store: store
 }))
 app.use(varMiddleware);
 app.use(userMiddleware);
