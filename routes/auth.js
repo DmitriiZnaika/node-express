@@ -4,7 +4,12 @@ const User = require("../modules/user");
 const router = Router()
 
 router.get('/login', async (req, res) => {
-	res.render('auth/login', {title: 'Authorization', isLogin: true})
+	res.render('auth/login', {
+		title: 'Authorization',
+		isLogin: true,
+		registerError: req.flash('registerError'),
+		loginError: req.flash('loginError')
+	})
 })
 
 router.get('/logout', async (req, res) => {
@@ -30,10 +35,12 @@ router.post('/login', async (req, res) => {
 					res.redirect('/')
 				})
 			} else {
+				req.flash('loginError', "Wrong password")
 				res.redirect('/auth/login')
 			}
 
 		} else {
+			req.flash('loginError', "The user not exist")
 			res.redirect('/auth/login')
 		}
 
@@ -47,6 +54,7 @@ router.post('/register', async (req, res) => {
 		const {email, password, repeat, name} = req.body
 		const candidate = await User.findOne({email})
 		if (candidate) {
+			req.flash('registerError', "User with same email exist")
 			res.redirect('/auth/login#register')
 		} else {
 			const hashPassword = await bcrypt.hash(password, 10)
