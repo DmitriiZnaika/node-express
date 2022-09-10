@@ -20,6 +20,8 @@
     "express-session": "^1.17.3",
     "flash": "^1.1.0",
     "mongoose": "^6.5.4",
+    "nodemailer": "^6.7.8",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
