@@ -3,8 +3,9 @@ const path = require('path')
 const mongoose = require('mongoose')
 const csrf = require('csurf')
 const session = require('express-session')
-const MongoDBStore = require('connect-mongodb-session')(session);
-const exphbs = require('express-handlebars');
+const flash = require('connect-flash')
+const MongoDBStore = require('connect-mongodb-session')(session)
+const exphbs = require('express-handlebars')
 const homeRoutes = require('./routes/home')
 const addRoutes = require('./routes/add')
 const coursesRoutes = require('./routes/courses')
@@ -39,6 +40,7 @@ app.use(session({
 	store: store
 }))
 app.use(csrf());
+app.use(flash());
 app.use(varMiddleware);
 app.use(userMiddleware);
 app.use(express.json());

@@ -39,3 +39,7 @@
 .auth {
 	margin-top: 20px;
 }
+
+.alert {
+	color: red;
+}
