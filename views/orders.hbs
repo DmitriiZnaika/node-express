@@ -25,6 +25,7 @@
             <p>Price: <span class="price">{{price}}</span></p>
           </div>
           <form action="/orders/{{_id}}" method="post">
+            <input type="hidden" name="_csrf" value={{@root.csrf}}>
             <input type="hidden" name="id" value="{{_id}}">
             <button class="btn btn-small">
               Delete

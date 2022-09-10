@@ -4,7 +4,7 @@
   <div class="input-field">
     <input id="title" name="title" type="text" class="validate" required>
     <label for="title">Course Name</label>
-    <span class="helper-text" data-error="Wrong name" >name</span>
+    <span class="helper-text" data-error="Wrong name">name</span>
   </div>
 
   <div class="input-field">
@@ -18,6 +18,8 @@
     <label for="img">URL img</label>
     <span class="helper-text" data-error="Wrong img">img</span>
   </div>
+
+  <input type="hidden" name="_csrf" value={{csrf}}>
 
   <button class="btn btn-primary">
     Add

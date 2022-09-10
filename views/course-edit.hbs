@@ -20,6 +20,8 @@
       <span class="helper-text" data-error="Wrong img">img</span>
     </div>
 
+    <input type="hidden" name="_csrf" value={{csrf}}>
+
     <input type="hidden" name="id" value="{{course._id}}">
     <button type="submit" class="btn btn-primary">
       Edit
@@ -27,6 +29,7 @@
   </form>
 
   <form action="/courses/remove" method="POST">
+    <input type="hidden" name="_csrf" value={{csrf}}>
     <input type="hidden" name="id" value="{{course._id}}">
     <button type="submit" class="btn red">
       Delete Course
