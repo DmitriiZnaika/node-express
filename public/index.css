@@ -43,3 +43,8 @@
 .alert {
 	color: red;
 }
+
+.login-btn-wrapper {
+	display: grid;
+	gap: 15px;
+}

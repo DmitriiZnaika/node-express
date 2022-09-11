@@ -9,7 +9,7 @@ const reqEmail = require('../emails/registartion')
 
 
 const transporter = nodemailer.createTransport(sendgrid({
-	auth: {api_key: keys.SEND_GRID_KEY}
+	auth: {api_key: process.env.SEND_GRID_KEY}
 }))
 
 router.get('/login', async (req, res) => {
@@ -75,6 +75,28 @@ router.post('/register', async (req, res) => {
 			await transporter.sendMail(reqEmail(email))
 		}
 
+
+	} catch (e) {
+		console.log(e)
+	}
+})
+
+
+router.get('/reset', async (req, res) => {
+	try {
+		res.render('auth/reset', {
+			title: 'Reset password',
+			// isLogin: false,
+			error: req.flash('error')
+		})
+	} catch (e) {
+		console.log(e)
+	}
+})
+
+
+router.post('/reset', async (req, res) => {
+	try {
 
 	} catch (e) {
 		console.log(e)
